@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'css' %}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    <style>
+.overlay{	
+ 
+ 
+  z-index: 100;
+
+  display: none;
+  background: rgba(0,0,0,0.6);
+}
+.cv-spinner {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px #ddd solid;
+  border-top: 4px #2e93e6 solid;
+  border-radius: 50%;
+  animation: sp-anime 0.8s infinite linear;
+}
+@keyframes sp-anime {
+  100% { 
+    transform: rotate(360deg); 
+  }
+}
+
+}
+</style>
+{% endblock  %}
+{% comment %} {% block title %}Youtube Keyword Researcher{% endblock %} {% endcomment %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            {% comment %} <h1>Youtube Keyword Researcher</h1> {% endcomment %}
+            <form>
+                <div class="form-group">
+                    <label for="keyword">Use 1-2 words for best results</label>
+                    <input type="text" class="form-control" id="keyword" placeholder="email marketing" required="required"/>
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-block" id="yt_kr_search_btn">Search</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <div class="row mt-2">
+        <div class="col-md-6">
+           
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Questions</h5>
+                    <div id="qoverlay" class="overlay">
+                        <div class="cv-spinner">
+                            <span class="spinner"></span>
+                        </div>
+                    </div>
+                    <table id="ytq_keywords_table" class="display" style="width:100%"> 
+              
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+           
+             <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Prepositions</h5>
+                      <div id="poverlay" class="overlay">
+                        <div class="cv-spinner">
+                            <span class="spinner"></span>
+                        </div>
+                    </div>
+                    <table id="ytp_keywords_table" class="display" style="width:100%"> 
+              
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="row mt-3">
+        <div class="col-md-6">
+            
+             <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Comparisons</h5>
+                      <div id="coverlay" class="overlay">
+                        <div class="cv-spinner">
+                            <span class="spinner"></span>
+                        </div>
+                    </div>
+                    <table id="ytc_keywords_table" class="display" style="width:100%"> 
+              
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            
+             <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Alphabeticals</h5>
+                      <div id="alphaoverlay" class="overlay">
+                        <div class="cv-spinner">
+                            <span class="spinner"></span>
+                        </div>
+                    </div>
+                    <table id="ytalpha_keywords_table" class="display" style="width:100%"> 
+              
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   
+    
+{% endblock content %}
+{% block 'js' %}
+    <script src="{% static 'js/yt-keyword-researcher.js' %}"></script>
+    <script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+{% endblock  %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Register</h2>
+
+{% comment %} <form method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Register">
+</form> {% endcomment %}
+<form method="post">
+  {% csrf_token %} {% for field in form %}
+  <div class="mb-3">
+    <label class="form-label" for="id_{{ field.name }}"
+      >{{ field.label }}</label
+    >
+  
+      <input
+        type="{{ field.field.widget.input_type }}"
+        class="form-control"
+        name="{{ field.name|lower  }}"
+        id="id_{{ field.name }}"
+    
+      <p class="help-text">{{ field.help_text }} </p>
+
+      
+ 
+  </div>
+  {% endfor %}
+  <div class="d-grid">
+    <input class="btn btn-block btn-primary" type="submit" value="Register" />
+  </div>
+</form>
+
+<a  class="btn btn-link" href="{% url 'login' %}">Back to login</a>
+{% endblock %}

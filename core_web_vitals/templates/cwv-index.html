@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% load static %} 
+{% block title %} Core Web Vitals {% endblock %} {% block content %}
+<div class="row">
+  <div class="col-md-12">
+    <h2>Core Web Vitals</h2>
+    <form>
+      <div class="mb-3">
+        <label class="form-label" for="url">Enter Url:</label>
+        <input
+          type="url"
+          class="form-control form-control-lg"
+          id="url"
+          placeholder="https://example.com"
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="sel1">Select Category:</label>
+        <select class="form-select form-select-lg" id="category" name="category">
+          <option value="accessibility">Accessibility</option>
+          <option value="best-practices">Best Practices</option>
+          <option value="performance">Performance</option>
+          <option value="pwa">PWA</option>
+          <option value="seo">SEO</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="sel1">Select Device:</label>
+        <select class="form-select form-select-lg" id="device" name="device">
+          <option value="desktop">Desktop</option>
+          <option value="mobile">Mobile</option>
+        </select>
+      </div>
+      <div class="d-grid">
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-block"
+        id="cwv_search_btn"
+      >
+        Search
+      </button>
+    </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %} {% block 'js' %}
+<script src="{% static 'js/cwv.js' %}"></script>
+{% endblock %}

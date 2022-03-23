@@ -1,0 +1,231 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    {% block 'css' %} {% endblock %}
+    <title>{% block title %}{% endblock %} Tools</title>
+  </head>
+  <body class="bg-light bg-gradient">
+    {% comment %}
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand fs-3" href="/">Tools</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapsibleNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse d-flex justify-content-center"
+          id="collapsibleNavbar"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link nav-link link-dark dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                >SEO Tools</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/question-explorer"
+                    >Answer Me</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/keyword-researcher"
+                    >Keyword Tool</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/text-summarizer"
+                    >Text Summary</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/email-validator"
+                    >Email Validator</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/hash-generator"
+                    >Hash Generator</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link nav-link link-dark dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                >Youtube Tools</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/yt-keyword-researcher"
+                    >Youtube Keyword Tool</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link nav-link link-dark dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                >Web Tools</a
+              >
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" href="/domain-name"
+                    >Fast Domain Search</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/core-web-vitals"
+                    >Web Vitals</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% endcomment %}
+
+    <div class="container">
+      <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
+        >
+          Tools
+        </a>
+
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li class="dropdown">
+            <a
+              class="nav-link nav-link link-dark dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              >SEO Tools</a
+            >
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="/question-explorer">Answer Me</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/keyword-researcher"
+                  >Keyword Tool</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="/text-summarizer"
+                  >Text Summary</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="/email-validator"
+                  >Email Validator</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="/hash-generator"
+                  >Hash Generator</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a
+              class="nav-link nav-link link-dark dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              >Youtube Tools</a
+            >
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="/yt-keyword-researcher"
+                  >Youtube Keyword Tool</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a
+              class="nav-link nav-link link-dark dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              >Web Tools</a
+            >
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="/domain-name"
+                  >Fast Domain Search</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="/core-web-vitals">Web Vitals</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="col-md-3 text-end">
+          {% if user.is_authenticated %}
+
+          <a class="btn btn-outline-primary me-2" href="{% url 'logout' %}"
+            >Logout</a
+          >
+          {% else %}
+          <a href="/accounts/login" class="btn btn-outline-primary me-2">
+            Login
+          </a>
+          {% endif %} {% if not user.is_authenticated %}
+          <a href="/register" class="btn btn-primary">Sign-up</a>
+          {% endif %}
+        </div>
+      </header>
+    </div>
+    <div class="container bg-white">{% block content %}{% endblock %}</div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    {% comment %} custom js {% endcomment %} {% block 'js' %}{% endblock %}
+  </body>
+</html>

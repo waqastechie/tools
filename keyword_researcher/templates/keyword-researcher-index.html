@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% load static %} 
+{% block title %}Keyword Researcher{% endblock %} {% block 'css' %}
+<link
+  rel="stylesheet"
+  href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css"
+/>
+<style>
+  .overlay{
+
+
+    z-index: 100;
+
+    display: none;
+    background: rgba(0,0,0,0.6);
+  }
+  .cv-spinner {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px #ddd solid;
+    border-top: 4px #2e93e6 solid;
+    border-radius: 50%;
+    animation: sp-anime 0.8s infinite linear;
+  }
+  @keyframes sp-anime {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  }
+</style>
+{% endblock %} {% block content %}
+<h2>Keyword Researcher</h2>
+<form>
+  <div class="form-group mb-3">
+    <label class="form-label" for="keyword"
+      >Use 1-2 words for best results</label
+    >
+    <input
+      type="text"
+      class="form-control form-control-lg"
+      id="keyword"
+      placeholder="email marketing"
+    />
+  </div>
+  <div class="d-grid">
+    <button
+      type="button"
+      class="btn btn-outline-primary btn-block"
+      id="kr_search_btn"
+    >
+      Search
+    </button>
+  </div>
+</form>
+<div class="row mt-3" style="display: none" id="keyword_div">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Keywords</h5>
+        <div id="qoverlay" class="overlay">
+          <div class="cv-spinner">
+            <span class="spinner"></span>
+          </div>
+        </div>
+        <table id="keywords_table" class="display" style="width: 100%"></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block 'js' %}
+<script src="{% static 'js/keyword-researcher.js' %}"></script>
+<script src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+{% endblock %}

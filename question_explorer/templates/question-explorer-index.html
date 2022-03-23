@@ -1,0 +1,524 @@
+{% extends "base.html" %} {% load static %} {% block title %} Question Explorer
+{% endblock %} {% block css%} {% endblock %} {% block content %}
+
+<h2>Question Explorer</h2>
+<form id="qs-form">
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label class="form-label" for="keywords"
+        >Use 1-2 words for best results
+      </label>
+      <input
+        type="text"
+        class="form-control form-control-lg"
+        id="keywords"
+        placeholder="email marketing"
+        required
+        autofocus
+      />
+    </div>
+    <div class="col-md-3">
+      <label class="form-label" for="keywords">Select Country </label>
+      <select
+        class="form-select form-select-lg mb-3"
+        aria-label="Default select example"
+        id="qs-country"
+      >
+        <option value="us" selected>United States</option>
+        <option value="gb">United Kingdom</option>
+        <option value="au">Australia</option>
+        <option value="ca">Canada</option>
+        <option value="pk">Pakistan</option>
+        <option value="in">India</option>
+        <option value="nz">New Zealand</option>
+        <option value="za">South Africa</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label" for="keywords">Select Language </label>
+      <select
+        class="form-select form-select-lg mb-3"
+        aria-label="Default select example"
+        id="qs-lang"
+      >
+        <option value="en" selected>English</option>
+        <option value="es">Español</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="pt">Português</option>
+        <option value="it">Italiano</option>
+        <option value="nl">Nederlands</option>
+        <option value="pl">Polski</option>
+        <option value="da">Dansk</option>
+        <option value="sv">Svenska</option>
+        <option value="no">Norsk</option>
+        <option value="ru">Pусский</option>
+        <option value="sk">Slovenčina</option>
+        <option value="fi">Suomi</option>
+        <option value="cs">Čeština</option>
+        <option value="ar">عربي</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="d-grid">
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-block"
+        id="qe_search_btn"
+      >
+        <span class="glyphicon glyphicon-search"></span> Search
+      </button>
+    </div>
+  </div>
+</form>
+<section
+  class="border border-light rounded mt-3"
+  id="q_section"
+  style="display: none"
+>
+  <h2>Questions</h2>
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="how_card_div">
+      <div class="card">
+        <div class="card-body" id="how">
+          <h5 class="card-title">How</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="which_card_div">
+      <div class="card">
+        <div class="card-body" id="which">
+          <h5 class="card-title">Which</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="why_card_div">
+      <div class="card">
+        <div class="card-body" id="why">
+          <h5 class="card-title">Why</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="where_card_div">
+      <div class="card">
+        <div class="card-body" id="where">
+          <h5 class="card-title">Where</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="who_card_div">
+      <div class="card">
+        <div class="card-body" id="who">
+          <h5 class="card-title">Who</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="when_card_div">
+      <div class="card">
+        <div class="card-body" id="when">
+          <h5 class="card-title">When</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="are_card_div">
+      <div class="card">
+        <div class="card-body" id="are">
+          <h5 class="card-title">Are</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="what_card_div">
+      <div class="card">
+        <div class="card-body" id="what">
+          <h5 class="card-title">What</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="is_card_div">
+      <div class="card">
+        <div class="card-body" id="is">
+          <h5 class="card-title">Is</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="can_card_div">
+      <div class="card">
+        <div class="card-body" id="can">
+          <h5 class="card-title">Can</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="will_card_div">
+      <div class="card">
+        <div class="card-body" id="will">
+          <h5 class="card-title">Will</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="do_card_div">
+      <div class="card">
+        <div class="card-body" id="do">
+          <h5 class="card-title">Do</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="does_card_div">
+      <div class="card">
+        <div class="card-body" id="does">
+          <h5 class="card-title">Does</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section
+  class="border border-light rounded mt-3"
+  id="p_section"
+  style="display: none"
+>
+  <h2>Preposition</h2>
+  <div class="row mt-3">
+    <div class="col-md-3 card-div" id="can_pcard_div">
+      <div class="card">
+        <div class="card-body" id="can_p">
+          <h5 class="card-title">Can</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 card-div" id="for_pcard_div">
+      <div class="card">
+        <div class="card-body" id="for_p">
+          <h5 class="card-title">For</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 card-div" id="is_pcard_div">
+      <div class="card">
+        <div class="card-body" id="is_p">
+          <h5 class="card-title">Is</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 card-div" id="near_pcard_div">
+      <div class="card">
+        <div class="card-body" id="near_p">
+          <h5 class="card-title">Near</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="to_pcard_div">
+      <div class="card">
+        <div class="card-body" id="to_p">
+          <h5 class="card-title">To</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="with_pcard_div">
+      <div class="card">
+        <div class="card-body" id="with_p">
+          <h5 class="card-title">With</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="without_pcard_div">
+      <div class="card">
+        <div class="card-body" id="without_p">
+          <h5 class="card-title">Without</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %} for comaprision {% endcomment %}
+<section
+  class="border border-light rounded mt-3"
+  id="c_section"
+  style="display: none"
+>
+  <h2>Comparion</h2>
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="how_card_div">
+      <div class="card">
+        <div class="card-body" id="c_how">
+          <h5 class="card-title">How</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="like_card_div">
+      <div class="card">
+        <div class="card-body" id="c_like">
+          <h5 class="card-title">Like</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="or_card_div">
+      <div class="card">
+        <div class="card-body" id="c_or">
+          <h5 class="card-title">Or</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="versus_card_div">
+      <div class="card">
+        <div class="card-body" id="c_versus">
+          <h5 class="card-title">Versus</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="vs_card_div">
+      <div class="card">
+        <div class="card-body" id="c_vs">
+          <h5 class="card-title">Vs</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% comment %} for alpha {% endcomment %}
+<section
+  class="border border-light rounded mt-3"
+  id="alpha_section"
+  style="display: none"
+>
+  <h2>Alpha</h2>
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="a_card_div">
+      <div class="card">
+        <div class="card-body" id="a">
+          <h5 class="card-title">A</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="b_card_div">
+      <div class="card">
+        <div class="card-body" id="b">
+          <h5 class="card-title">B</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="c_card_div">
+      <div class="card">
+        <div class="card-body" id="c">
+          <h5 class="card-title">C</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="d_card_div">
+      <div class="card">
+        <div class="card-body" id="d">
+          <h5 class="card-title">D</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="e_card_div">
+      <div class="card">
+        <div class="card-body" id="e">
+          <h5 class="card-title">E</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 card-div" id="f_card_div">
+      <div class="card">
+        <div class="card-body" id="f">
+          <h5 class="card-title">F</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="g_card_div">
+      <div class="card">
+        <div class="card-body" id="g">
+          <h5 class="card-title">G</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="h_card_div">
+      <div class="card">
+        <div class="card-body" id="h">
+          <h5 class="card-title">H</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 card-div" id="i_card_div">
+      <div class="card">
+        <div class="card-body" id="i">
+          <h5 class="card-title">I</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="j_card_div">
+      <div class="card">
+        <div class="card-body" id="j">
+          <h5 class="card-title">J</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="k_card_div">
+      <div class="card">
+        <div class="card-body" id="k">
+          <h5 class="card-title">K</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 card-div" id="l_card_div">
+      <div class="card">
+        <div class="card-body" id="l">
+          <h5 class="card-title">L</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="m_card_div">
+      <div class="card">
+        <div class="card-body" id="m">
+          <h5 class="card-title">M</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="n_card_div">
+      <div class="card">
+        <div class="card-body" id="n">
+          <h5 class="card-title">N</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 card-div" id="o_card_div">
+      <div class="card">
+        <div class="card-body" id="o">
+          <h5 class="card-title">O</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="p_card_div">
+      <div class="card">
+        <div class="card-body" id="p">
+          <h5 class="card-title">P</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="q_card_div">
+      <div class="card">
+        <div class="card-body" id="q">
+          <h5 class="card-title">Q</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 card-div" id="r_card_div">
+      <div class="card">
+        <div class="card-body" id="r">
+          <h5 class="card-title">R</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="s_card_div">
+      <div class="card">
+        <div class="card-body" id="s">
+          <h5 class="card-title">S</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="t_card_div">
+      <div class="card">
+        <div class="card-body" id="t">
+          <h5 class="card-title">T</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 card-div" id="u_card_div">
+      <div class="card">
+        <div class="card-body" id="u">
+          <h5 class="card-title">U</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="v_card_div">
+      <div class="card">
+        <div class="card-body" id="v">
+          <h5 class="card-title">V</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="w_card_div">
+      <div class="card">
+        <div class="card-body" id="w">
+          <h5 class="card-title">W</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 card-div" id="x_card_div">
+      <div class="card">
+        <div class="card-body" id="x">
+          <h5 class="card-title">X</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-4 card-div" id="y_card_div">
+      <div class="card">
+        <div class="card-body" id="y">
+          <h5 class="card-title">Y</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 card-div" id="z_card_div">
+      <div class="card">
+        <div class="card-body" id="z">
+          <h5 class="card-title">Z</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %} {% block 'js' %}
+<script src="{% static 'js/question-explorer.js' %}"></script>
+{% endblock %}

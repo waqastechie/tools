@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <form>
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="long_text">Enter Text Here:</label>
+        <textarea class="form-control" rows="20" id="long_text"></textarea>
+      </div>
+      <button
+        type="button"
+        class="btn btn-outline-primary btn-block"
+        id="article_rewriter_submit_btn"
+      >
+        Search
+      </button>
+    </form>
+    <textarea
+      class="form-control mt-5"
+      id="rewriter-output"
+      rows="20"
+      style="display: none"
+      readonly="readonly"
+    ></textarea>
+  </div>
+</div>
+
+{% endblock %} {% block 'js' %}
+<script src="{% static 'js/article-rewriter.js' %}"></script>
+{% endblock %}

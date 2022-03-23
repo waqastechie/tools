@@ -1,0 +1,28 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <form>
+      {% csrf_token %}
+      <div class="form-group mb-3">
+        <label class="form-label" for="long_text">Enter Text Here:</label>
+        <textarea class="form-control" rows="20" id="long_text"></textarea>
+      </div>
+      <div class="d-grid">
+        <button
+        type="button"
+        class="btn btn-outline-primary btn-block"
+        id="long_text_search_btn"
+      >
+        Search
+      </button>
+      </div>
+      
+    </form>
+    <textarea class="form-control" id="text-summarizer-output" rows="20" style="display:none" readonly="readonly"></textarea>
+  </div>
+</div>
+
+{% endblock %} {% block 'js' %}
+<script src="{% static 'js/text-summarizer.js' %}"></script>
+{% endblock %}

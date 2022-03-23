@@ -1,0 +1,112 @@
+{% extends "base.html" %} {% load static %} {% block title %}Domain Name{% endblock %} {% block content %}
+<div class="row mt-3">
+  <div class="col-md-12">
+    <h2>Domain Name</h2>
+    <form id="dn-form">
+      <div class="mb-3">
+        <label class="form-label" for="url">Enter Domain:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="domain_name"
+          placeholder="example.com"
+          required="required"
+          autofocus
+        />
+      </div>
+      <div class="d-grid">
+         <button type="submit" class="btn btn-outline-primary btn-block" id="dn_search_btn">
+        Search
+      </button>
+      </div>
+     
+    </form>
+  </div>
+</div>
+<section id="result" style="display:none">
+<div class="row mt-3">
+  <div class="col-md-12">
+    <div class="card text-center">
+      <div class="card-header" id="domain_name_result"></div>
+      <div class="card-body">
+        
+        <p class="card-text" id="domain_result">
+        
+        </p>
+        <div id="details" class="collapse">
+        </div>
+        {% comment %} <a href="#" class="btn btn-primary">Go somewhere</a> {% endcomment %}
+      </div>
+     
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="suggetions" style="display:none">
+  <h2> Suggetions</h2>
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <div class="card bg-light">
+            <div class="card-header">Common Domains</div>
+            <div class="card-body">
+                {% comment %} <h5 class="card-title">Light card title</h5> {% endcomment %}
+                <p class="card-text" id="common"></p>
+            </div>
+        </div>
+        </div>
+         <div class="col-md-4">
+            <div class="card bg-light">
+            <div class="card-header">New Domains</div>
+            <div class="card-body">
+                {% comment %} <h5 class="card-title">Light card title</h5> {% endcomment %}
+                <p class="card-text" id="new"></p>
+            </div>
+        </div>
+        </div> 
+         <div class="col-md-4">
+            <div class="card bg-light">
+            <div class="card-header">Extra Domains</div>
+            <div class="card-body">
+                {% comment %} <h5 class="card-title">Light card title</h5> {% endcomment %}
+                <p class="card-text" id="extra"></p>
+            </div>
+        </div>
+        </div>  
+    </div>
+
+
+
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <div class="card bg-light">
+            <div class="card-header">Prefix Domains</div>
+            <div class="card-body">
+                {% comment %} <h5 class="card-title">Light card title</h5> {% endcomment %}
+                <p class="card-text" id="prefix"></p>
+            </div>
+        </div>
+        </div>
+         <div class="col-md-4">
+            <div class="card bg-light">
+            <div class="card-header">Suffix Domains</div>
+            <div class="card-body">
+                {% comment %} <h5 class="card-title">Light card title</h5> {% endcomment %}
+                <p class="card-text" id="suffix"></p>
+            </div>
+        </div>
+        </div> 
+         <div class="col-md-4">
+            <div class="card bg-light">
+            <div class="card-header">Shuffled Domains</div>
+            <div class="card-body">
+                {% comment %} <h5 class="card-title">Light card title</h5> {% endcomment %}
+                <p class="card-text" id="shuffled"></p>
+            </div>
+        </div>
+        </div>  
+    </div>
+</section>
+{% endblock content %} {% block 'js' %}
+<script src="{% static 'js/dn.js' %}"></script>
+{% endblock %}

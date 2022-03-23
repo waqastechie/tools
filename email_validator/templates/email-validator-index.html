@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block content %}
+{% load static %}
+<form action="validator" method="post">
+      {% csrf_token %}
+  <div class="row">
+    <div></div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label" for="email">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+        
+      placeholder="Enter email"
+      name="email"
+    />
+    
+  </div>
+  <div class="d-grid">
+    <input type="submit" class="btn btn-primary btn-block" value="Check Email" />
+  </div>
+  
+</form>
+{% if response %}
+
+    {% if response.status == "valid" %}
+   
+    
+    <div class="card bg-success text-white mt-3">
+     
+     
+        <h5 class="card-title"> {{response.email}}</h5>
+        <p class="card-text">{{response.status}}</p>
+      
+    </div>
+    {% endif %}
+    {% if response.status == "invalid" %}
+   
+    
+    <div class="card bg-danger text-white mt-3">
+      {% comment %} <img class="card-img" src="{% static "img\happy.png"%}" alt="Card image"> {% endcomment %}
+     
+        <h5 class="card-title"> {{response.email}}</h5>
+        <p class="card-text">{{response.status}}</p>
+     
+    </div>
+    {% endif %}
+{% endif %}
+{% endblock content %}

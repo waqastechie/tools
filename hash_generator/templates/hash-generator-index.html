@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+<form action="generator" method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="form-label" for="text">Enter Text:</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="This is example text"
+      name="message"
+    />
+  </div>
+  <div class="d-grid">
+    <input type="submit" class="btn btn-primary btn-block" value="Get Hash" />
+  </div>
+  
+</form>
+{% if hash %} 
+{% for key,value in hash.items %}
+<h4>{{ key }}</h4>
+<p class="lead text-break">{{ value }}</p>
+<hr>
+{% endfor %} {% endif %} {% endblock content %}
