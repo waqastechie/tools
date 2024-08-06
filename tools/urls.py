@@ -17,16 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include, path
-from django.conf.urls import include, url
+from django.urls import include, re_path
 from django.views.generic.base import TemplateView
 
 
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='home.html'),
+    re_path(r'^$', TemplateView.as_view(template_name='home.html'),
         name='home'),
-    url(r"^", include("users.urls")),
+    re_path(r"^", include("users.urls")),
     path('text-summarizer/', include('text_summarizer.urls')),
     path('article-rewriter/', include('article_rewriter.urls')),
     path('email-validator/', include('email_validator.urls')),

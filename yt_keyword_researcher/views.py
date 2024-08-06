@@ -25,7 +25,7 @@ def index(request):
 
 
 def yt_question_explorer(request):
-    if request.GET.get('keyword', None) is not None and request.is_ajax():
+    if request.GET.get('keyword', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         keyword = request.GET.get('keyword')
         response = {}
         questions_list = [keyword]
@@ -106,7 +106,7 @@ def q_generator(keyword, questions):
 
 def yt_prepositional_explorer(request):
 
-    if request.GET.get('keyword', None) is not None and request.is_ajax():
+    if request.GET.get('keyword', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         keyword = request.GET.get('keyword')
         response = {}
         prep_keyword = [keyword]
@@ -172,7 +172,7 @@ def p_generator(keyword, prep_keyword):
 
 def yt_comparison_explorer(request):
 
-    if request.GET.get('keyword', None) is not None and request.is_ajax():
+    if request.GET.get('keyword', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         keyword = request.GET.get('keyword')
         response = {}
         comparison_keyword = [keyword]
@@ -239,7 +239,7 @@ def comparion_generator(keyword, comparison_keyword):
 
 def yt_alpha_explorer(request):
 
-    if request.GET.get('keyword', None) is not None and request.is_ajax():
+    if request.GET.get('keyword', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         keyword = request.GET.get('keyword')
         response = {}
         alpha_keyword = [keyword]

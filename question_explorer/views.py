@@ -24,7 +24,7 @@ def index(request):
 
 
 def question_explorer(request):
-    if request.GET.get('keywords', None) is not None and request.is_ajax():
+    if request.GET.get('keywords', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         keyword = request.GET.get('keywords')
         country = request.GET.get('country')
         lang = request.GET.get('lang')
@@ -120,7 +120,7 @@ def q_generator(keyword, questions, keyword_id, lang,country):
 
 def prepositional_explorer(request):
 
-    if request.GET.get('keywords', None) is not None and request.is_ajax():
+    if request.GET.get('keywords', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         keyword = request.GET.get('keywords')
         country = request.GET.get('country')
         lang = request.GET.get('lang')
@@ -197,7 +197,7 @@ def p_generator(keyword, prep_keyword, keyword_id, lang,country):
 
 def comparison_explorer(request):
 
-    if request.GET.get('keywords', None) is not None and request.is_ajax():
+    if request.GET.get('keywords', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         keyword = request.GET.get('keywords')
         country = request.GET.get('country')
         lang = request.GET.get('lang')
@@ -278,7 +278,7 @@ def comparion_generator(keyword, comparison_keyword, keyword_id, lang,country):
 
 def alpha_explorer(request):
 
-    if request.GET.get('keywords', None) is not None and request.is_ajax():
+    if request.GET.get('keywords', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         keyword = request.GET.get('keywords')
         country = request.GET.get('country')
         lang = request.GET.get('lang')

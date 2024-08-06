@@ -14,7 +14,7 @@ def index(request):
 
 
 def keyword_researcher(request):
-    if request.GET.get('keyword', None) is not None and request.is_ajax():
+    if request.GET.get('keyword', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         response = {}
         keyword = request.GET.get('keyword')
         keyword_obj, keyword_created = Keyword.objects.get_or_create(

@@ -16,7 +16,7 @@ def index(request):
 
 def engine(request):
 
-    if request.GET.get('url', None) is not None and request.is_ajax():
+    if request.GET.get('url', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         api_key = "AIzaSyDW6x_jD0x1XwixqVMX2b3vIeEOfUGenNY"
         url = request.GET.get('url')
         device = request.GET.get('device')

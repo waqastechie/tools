@@ -16,7 +16,7 @@ def index(request):
 
 def yt_keyword_researcher(request):
     
-    if request.GET.get('keyword', None) is not None and request.is_ajax():
+    if request.GET.get('keyword', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         url = "suggestqueries.google.com/complete/search?client=chrome&hl=${lang}&ds=yt&gl=${country}&callback=?&q="
         response = {}
         keyword = request.GET.get('keyword')

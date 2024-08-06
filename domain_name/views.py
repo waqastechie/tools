@@ -20,7 +20,7 @@ def check_reg(name):
 
 
 def domain_name_checker(request):
-    if request.GET.get('domain_name', None) is not None and request.is_ajax():
+    if request.GET.get('domain_name', None) is not None and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         domain = request.GET.get('domain_name')
         domain_info_dict = {}
         is_domain_reg = check_reg(domain)
